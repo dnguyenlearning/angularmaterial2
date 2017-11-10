@@ -18,7 +18,7 @@ export class SnackbarChildComponent implements OnInit {
     console.log(this.data)
   }
 
-  close(): void {
+  closeDialog(): void {
     this.matSnackBarRef.closeWithAction();
   }
 

@@ -1,10 +1,8 @@
-<ol>
-  <li>
-    <mat-form-field>
-      <input matInput [(ngModel)]="name" placeholder="What's your name?">
-    </mat-form-field>
-  </li>
-  <li>
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
-  </li>
-</ol>
+
+<div style="text-align:center">
+  <h3>Type Your Name, Button Will Show</h3>
+  <mat-form-field>
+    <input matInput [(ngModel)]="name" placeholder="What's your name?">
+  </mat-form-field>
+  <p *ngIf="name"><button  mat-raised-button (click)="openDialog()">Show Dialog</button></p>
+</div>

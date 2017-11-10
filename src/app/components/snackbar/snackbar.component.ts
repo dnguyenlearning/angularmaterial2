@@ -29,7 +29,8 @@ export class SnackbarComponent implements OnInit {
     config.horizontalPosition = this.horizontalPosition;
     config.direction = this.dir.value;
     config.panelClass='test';
-    config.data={name:'DNlearning'};
+    config.data={message: message, action:action};
+    config.duration=2000;
     this.snackBar.openFromComponent(SnackbarChildComponent,config);
   }
 }

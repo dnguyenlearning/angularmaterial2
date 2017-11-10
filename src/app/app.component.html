@@ -59,11 +59,11 @@
   <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
     <h1>Chips</h1>
     <div>
-      <mat-chip-list>
+      <mat-chip-list #chips="matChipList">
         <mat-chip>1st chip</mat-chip>
-        <mat-chip color="warn" selected="true">2nd chip</mat-chip>
-        <mat-chip color="primary" selected="true">3rd chip</mat-chip>
-        <mat-chip color="accent" selected="true">4th chip</mat-chip>
+        <mat-chip value="chip1" color="warn" selected="true">2nd chip</mat-chip>
+        <mat-chip value="chip2" color="primary" selected="true">3rd chip</mat-chip>
+        <mat-chip value="chip3" color="accent" selected="true">4th chip</mat-chip>
       </mat-chip-list>
     </div>
     <h2>Custom Remove Event</h2>
@@ -382,21 +382,26 @@
     <div class="select" fxLayout="column wrap" fxLayoutAlign="center">
       <mat-form-field>
         <mat-select placeholder="State" #select="matSelect" (change)="getValueSelect(select)">
-          <mat-option selected="true" [value]="124125">Selected</mat-option>
+          <mat-option selected="true" [value]="124125">Test</mat-option>
           <mat-option *ngFor="let state of states" [value]="state.code">{{ state.name }}</mat-option>
         </mat-select>
       </mat-form-field>
+      valueChanged: {{select.value}}
     </div>
   </div>
   <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
     <h2>Slider</h2>
     <div class="slider" fxLayout="column wrap" fxLayoutAlign="center">
-      <mat-slider min="1" max="100" step="1" value="30" #slider="matSlider"></mat-slider>
-      <p>Value: {{slider.value}}</p>
-      <mat-slider vertical min="1" max="100" step="1" value="30"></mat-slider>
-      <mat-slider invert min="1" max="100" step="1" value="30"></mat-slider>
-      <mat-slider thumbLabel min="1" max="5" value="2" tickInterval="1"></mat-slider>
-      <mat-slider step="4" tickInterval="3"></mat-slider>
+      <mat-slider min="1" max="100" step="1" value="20" #slider="matSlider"></mat-slider>
+      <p>Default Slider, Value: {{slider.value}}</p>
+      <mat-slider vertical min="1" max="100" step="1" #slider1="matSlider" value="30"></mat-slider>
+      <p>Vertical, Value: {{slider1.value}}</p>
+      <mat-slider invert min="1" max="100" step="1" #slider2="matSlider" value="10"></mat-slider>
+      <p>Vertival Invert, Value: {{slider2.value}}</p>
+      <mat-slider thumbLabel min="1" max="10" value="2" #slider3="matSlider" tickInterval="1"></mat-slider>
+      <p>ThumLablel Slider, Value: {{slider3.value}}</p>
+      <mat-slider step="4" tickInterval="3" #slider4="matSlider"></mat-slider>
+      <p>TickInterval Slider, Value: {{slider4.value}}</p>
     </div>
   </div>
   <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
@@ -415,6 +420,7 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker (selectedChanged)="DatePickerChange(picker)" #picker="matDatepicker"></mat-datepicker>
         </mat-form-field>
+        <p>ChoosedDate: {{picker._selected}}</p>
     </div>
   </div>
 

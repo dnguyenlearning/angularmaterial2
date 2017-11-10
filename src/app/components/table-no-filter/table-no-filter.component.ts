@@ -45,6 +45,7 @@ export class TableNoFilterComponent implements OnInit {
 
   createUser(form){
     this.exampleDatabase.addUser(form.value);
+    this.form.reset();
   }
 
   
