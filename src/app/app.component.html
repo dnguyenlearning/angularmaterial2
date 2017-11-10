@@ -1,0 +1,467 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>DNlearning</span>
+      <span class="example-spacer"></span>
+      <span class="toolbar-icon">About</span>
+      <span class="toolbar-icon">Services</span>
+    </mat-toolbar-row>
+    <!-- <mat-toolbar-row>
+      row2
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      row3
+    </mat-toolbar-row> -->
+  </mat-toolbar>
+
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h1>Buttons</h1>
+    <div class="button" fxLayout="row wrap" fxLayoutAlign="center">
+      <button mat-button>default</button>
+      <button mat-raised-button>mat-raised-button</button>
+      <button mat-raised-button color="primary">mat-raised-button primary</button>
+      <button mat-icon-button color="accent">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-fab>basic</button>
+      <button mat-fab color="primary">primary</button>
+      <button mat-mini-fab>mini</button>
+      <button mat-mini-fab color="primary">primary</button>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Buttons Toggles (Console event)</h2>
+    <div>
+      <mat-button-toggle (change)="buttonToggle()" color="primary">Toggle Me</mat-button-toggle>
+    </div>
+    <div style="margin-top:20px;">
+      <mat-button-toggle-group (change)="valueCall(group)" selected #group="matButtonToggleGroup">
+        <mat-button-toggle value="Left">
+          <mat-icon>format_align_left</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle checked="true" value="Center">
+          <mat-icon>format_align_center</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="Right">
+          <mat-icon>format_align_right</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="Justify" disabled>
+          <mat-icon>format_align_justify</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div>
+      <p>Value:
+        <span class="strong">{{group.value}}</span>
+      </p>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h1>Chips</h1>
+    <div>
+      <mat-chip-list>
+        <mat-chip>1st chip</mat-chip>
+        <mat-chip color="warn" selected="true">2nd chip</mat-chip>
+        <mat-chip color="primary" selected="true">3rd chip</mat-chip>
+        <mat-chip color="accent" selected="true">4th chip</mat-chip>
+      </mat-chip-list>
+    </div>
+    <h2>Custom Remove Event</h2>
+    <mat-chip-list selectable="false">
+      <mat-chip color="warn" selected="true" *ngIf="visible" (destroy)="displayMessage('chip destroyed')" (remove)="toggleVisible()">
+        With Events
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <button style="margin-left:10px;" mat-raised-button color="primary" (click)="visible=!visible">Show/Hide</button>
+    </mat-chip-list>
+    <h2>Chips list Input</h2>
+    <mat-form-field class="chip-list">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (remove)="remove(fruit)">
+          {{fruit.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="New fruit..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)" />
+      </mat-chip-list>
+    </mat-form-field>
+
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Icons</h2>
+    <div class="normalIcon" fxLayout="row wrap" fxLayoutAlign="center">
+      <mat-icon color="primary">home</mat-icon>
+      <mat-icon color="accent">folder</mat-icon>
+      <mat-icon>note</mat-icon>
+      <mat-icon color="primary">face</mat-icon>
+    </div>
+    <h2>SVG Icons</h2>
+    <div class="svgIcon">
+      <mat-icon svgIcon="camera"></mat-icon>
+      <mat-icon svgIcon="play"></mat-icon>
+      <mat-icon svgIcon="linamosa"></mat-icon>
+    </div>
+  </div>
+
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Progress spinner</h2>
+    <div class="spiner" fxLayout="row wrap" fxLayoutAlign="center">
+      <mat-spinner></mat-spinner>
+      <mat-progress-spinner color="accent" [mode]="mode" value="80"></mat-progress-spinner>
+    </div>
+    <button mat-raised-button color="primary" (click)=startStopProgress()>Start/Stop</button>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Progress Bar</h2>
+    <p>
+      <button mat-raised-button color="accent" (click)="startStopProgressBar()" style="margin-bottom:10px">Start/Stop</button>
+      <button mat-raised-button color="primary" (click)="addOrRemove(5)" style="margin-bottom:10px">+5</button>
+      <button mat-raised-button color="primary" (click)="addOrRemove(-5)" style="margin-bottom:10px">-5</button>
+    </p>
+    <mat-progress-bar [color]="color" [mode]="modeBar" [value]="value" [bufferValue]="bufferValue">
+    </mat-progress-bar>
+  </div>
+
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center">
+    <h2>List</h2>
+    <div class="list" fxLayout="row wrap" fxLayout.lt-md="column">
+      <mat-list fxFlex>
+        <mat-list-item>Item1</mat-list-item>
+        <mat-list-item>Item2</mat-list-item>
+        <mat-list-item>Item3</mat-list-item>
+      </mat-list>
+      <mat-nav-list fxFlex>
+        <a mat-list-item>link1</a>
+        <a mat-list-item>link2</a>
+        <a mat-list-item>link3</a>
+      </mat-nav-list>
+      <mat-selection-list #shoes>
+        <mat-list-option selected="true">option1</mat-list-option>
+        <mat-list-option>option2</mat-list-option>
+        <mat-list-option>option3</mat-list-option>
+        <h1>Options selected: {{shoes.selectedOptions.selected.length}}</h1>
+      </mat-selection-list>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayout.lt-md="column" class="each-section" fxLayoutAlign="center" fxLayoutGap="20px;">
+    <div fxFlex class="simpleCard">
+      <h2> Simple Card</h2>
+      <div class="card" fxLayout="column wrap">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="simpleAvatar"></div>
+            <mat-card-title>Simple Card</mat-card-title>
+            <mat-card-subtitle>subTitle</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta aliquid fuga voluptatum impedit eum cupiditate
+            ea expedita provident! Minus modi quae soluta, labore nostrum deserunt beatae excepturi inventore delectus mollitia?</mat-card-content>
+          <mat-card-footer>
+            <button mat-button> Like</button>
+            <button mat-button> Share</button>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+    <div fxFlex>
+      <h2> Full card</h2>
+      <div class="card" fxLayout="row wrap">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Avatar</mat-card-title>
+            <mat-card-subtitle>Hot Movies</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://i.ytimg.com/vi/RqHI0kE-cyo/maxresdefault.jpg" alt="Photo of a avatar">
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Tabs</h2>
+    <div class="tabs" fxLayout="row wrap" fxLayoutAlign="center">
+      <mat-tab-group>
+        <mat-tab label="About">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quod modi delectus id, voluptates asperiores
+          error sed debitis fugit commodi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus voluptates
+          aliquid, reprehenderit provident voluptatum voluptatibus adipisci enim. Explicabo corrupti quos ducimus reiciendis,
+          dicta commodi voluptas delectus, molestias inventore soluta deleniti?</mat-tab>
+        <mat-tab isActive="true" label="Service">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quod modi delectus id, voluptates asperiores
+          error sed debitis fugit commodi.</mat-tab>
+        <mat-tab label="New Tab">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quod modi delectus id, voluptates asperiores
+          error sed debitis fugit commodi.</mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Expansion</h2>
+    <div class="expensions" fxLayout="row wrap" fxLayoutAlign="center">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Personal data
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your name and age
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+          <input matInput placeholder="First name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Age">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Menus</h2>
+    <div class="menus" fxLayout="row wrap" fxLayoutAlign="center">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu xPosition="before" yPosition="above" [overlapTrigger]="false" #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voicemail</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+
+      <mat-menu #animals="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+        <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+      </mat-menu>
+
+      <mat-menu #vertebrates="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+        <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+        <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+        <button mat-menu-item>Birds</button>
+        <button mat-menu-item>Mammals</button>
+      </mat-menu>
+
+      <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+      </mat-menu>
+
+      <mat-menu #fish="matMenu">
+        <button mat-menu-item>Baikal oilfish</button>
+        <button mat-menu-item>Bala shark</button>
+        <button mat-menu-item>Ballan wrasse</button>
+        <button mat-menu-item>Bamboo shark</button>
+        <button mat-menu-item>Banded killifish</button>
+      </mat-menu>
+
+      <mat-menu #amphibians="matMenu">
+        <button mat-menu-item>Sonoran desert toad</button>
+        <button mat-menu-item>Western toad</button>
+        <button mat-menu-item>Arroyo toad</button>
+        <button mat-menu-item>Yosemite toad</button>
+      </mat-menu>
+
+      <mat-menu #reptiles="matMenu">
+        <button mat-menu-item>Banded Day Gecko</button>
+        <button mat-menu-item>Banded Gila Monster</button>
+        <button mat-menu-item>Black Tree Monitor</button>
+        <button mat-menu-item>Blue Spiny Lizard</button>
+        <button mat-menu-item disabled>Velociraptor</button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div fxLayout="row" class="each-section" fxLayoutAlign="center center">
+
+    <div class="sidenav">
+      <h2>SideNav</h2>
+      <mat-sidenav-container>
+        <mat-sidenav mode='push' position='start' #sideleft class="example-sidenav">
+          <p>Hello, I'm left SideNav!</p>
+          <p>
+            <a routerLink="/test" (click)="sideleft.close()">test Link</a>
+          </p>
+          <button mat-raised-button color='accent' (click)="sideleft.close()">close</button>
+        </mat-sidenav>
+        <mat-sidenav mode='push' position='end' #sideright class="example-sidenav">
+          Hello, I'm left Sideright!
+          <p>
+            <a routerLink="/project" (click)="sideright.close()">test Link</a>
+          </p>
+          <button mat-raised-button color='accent' (click)="sideright.close()">close</button>
+        </mat-sidenav>
+
+        <div class="example-sidenav-content">
+          <button style="float:left" type="button" mat-raised-button color="primary" (click)="sideleft.open()">
+            Open sideleft
+          </button>
+          <button style="float:right" type="button" mat-raised-button color="primary" (click)="sideright.open()">
+            Open sideright
+          </button>
+          <div style="clear:both"></div>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem nam dolorem officia, atque sint magni repellendus
+            tenetur enim, obcaecati tempore minus exercitationem dolores id. Harum labore officiis accusamus illum incidunt!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque dignissimos voluptatibus perferendis, alias mollitia
+            maxime recusandae vero quidem quas, aliquid, molestiae nulla? Tempora id ullam odit error ex laudantium incidunt.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur earum, provident at rerum quidem delectus
+            accusantium sit consequatur quasi magni maiores vel nemo accusamus, minima dolores suscipit quaerat, molestias
+            reprehenderit.</p>
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-container>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Form Fields</h2>
+    <div class="forms" fxLayout="column wrap" fxLayoutAlign="center">
+      <form class="example-container" [formGroup]="options">
+        <mat-checkbox formControlName="hideRequired">On/Off requiredMarker</mat-checkbox>
+        <div>
+          <label>Float placeholder: </label>
+          <mat-radio-group formControlName="floatPlaceholder">
+            <mat-radio-button value="auto">Auto</mat-radio-button>
+            <mat-radio-button value="always">Always</mat-radio-button>
+            <mat-radio-button value="never">Never</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </form>
+
+      <mat-form-field dividerColor="accent" hintLabel="Dont contain spaces" [hideRequiredMarker]="options.value.hideRequired" [floatPlaceholder]="options.value.floatPlaceholder">
+        <input matInput placeholder="Username" required>
+        <mat-icon matPrefix>face</mat-icon>
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field color="accent" [hideRequiredMarker]="options.value.hideRequired" [floatPlaceholder]="options.value.floatPlaceholder">
+        <input  matInput placeholder="Enter your Email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field [hideRequiredMarker]="options.value.hideRequired" [floatPlaceholder]="options.value.floatPlaceholder">
+        <mat-select required>
+          <mat-option>-- None --</mat-option>
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+        <mat-placeholder>
+          <mat-icon>favorite</mat-icon>
+          <b> Fancy</b>
+          <i> placeholder</i>
+        </mat-placeholder>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Get Value Radio Buttons (Console event)</h2>
+    <div class="radios" fxLayout="column wrap" fxLayoutAlign="center">
+      <mat-radio-group #groupradio="matRadioGroup" (change)="getValueRadio(groupradio)">
+        <mat-radio-button value="person1"><mat-icon>face</mat-icon> 1</mat-radio-button>
+        <mat-radio-button value="person2"><mat-icon>face</mat-icon> 2</mat-radio-button>
+      </mat-radio-group>
+      <p>Selected value: {{groupradio.value}}</p>
+    </div>
+  </div>
+
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Get Selected Value (Console event)</h2>
+    <div class="select" fxLayout="column wrap" fxLayoutAlign="center">
+      <mat-form-field>
+        <mat-select placeholder="State" #select="matSelect" (change)="getValueSelect(select)">
+          <mat-option selected="true" [value]="124125">Selected</mat-option>
+          <mat-option *ngFor="let state of states" [value]="state.code">{{ state.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Slider</h2>
+    <div class="slider" fxLayout="column wrap" fxLayoutAlign="center">
+      <mat-slider min="1" max="100" step="1" value="30" #slider="matSlider"></mat-slider>
+      <p>Value: {{slider.value}}</p>
+      <mat-slider vertical min="1" max="100" step="1" value="30"></mat-slider>
+      <mat-slider invert min="1" max="100" step="1" value="30"></mat-slider>
+      <mat-slider thumbLabel min="1" max="5" value="2" tickInterval="1"></mat-slider>
+      <mat-slider step="4" tickInterval="3"></mat-slider>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Slider Toggle</h2>
+    <div class="slider" fxLayout="column wrap" fxLayoutAlign="center">
+      <mat-slide-toggle color="primary" (change)="getSlideToggleValue(slideToggle)" #slideToggle="matSlideToggle">Slide Me!</mat-slide-toggle>
+      <p>Checked: {{slideToggle.checked}}</p>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Date Picker</h2>
+    <div class="datePicker" fxLayout="column wrap" fxLayoutAlign="center">
+        <h2>Filter Day</h2>
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker (selectedChanged)="DatePickerChange(picker)" #picker="matDatepicker"></mat-datepicker>
+        </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Check Box</h2>
+    <div class="checkbox" fxLayout="column wrap" fxLayoutAlign="center">
+        <mat-checkbox #checkbox="matCheckbox">Check me</mat-checkbox>
+        <p>Selected: {{checkbox.checked}}</p>
+    </div>
+  </div>
+
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>AutoComplete</h2>
+    <div class="autocomplete" fxLayout="column wrap" fxLayoutAlign="center">
+        <mat-form-field>
+          <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Tables</h2>
+    <div class="tables">
+        <app-table-no-filter></app-table-no-filter>
+    </div>
+  </div>
+
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Dialog</h2>
+    <div class="dialog">
+        <app-dialog></app-dialog>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>Tooltip</h2>
+    <div class="tooltip">
+        <app-tooltip></app-tooltip>
+    </div>
+  </div>
+  <div fxLayout="column" class="each-section" fxLayoutAlign="center center">
+    <h2>SnackBar</h2>
+    <div class="snackbar">
+        <app-snackbar></app-snackbar>
+    </div>
+  </div>
+</div>

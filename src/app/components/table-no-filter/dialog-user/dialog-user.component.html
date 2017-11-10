@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{user.id}} - {{user.name}}</mat-card-title>
+      <mat-card-subtitle>Progress: {{user.progress}}%</mat-card-subtitle>
+      <mat-card-subtitle>Color: {{user.color}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="assets/images/ok.jpg" alt="avatar">
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Edit</button>
+      <button mat-raised-button color="accent">Remove</button>
+      <button mat-icon-button >
+        <mat-icon color="accent" (click)="closeDialog()">close</mat-icon>
+      </button>
+    </mat-card-actions>
+</mat-card>

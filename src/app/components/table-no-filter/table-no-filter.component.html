@@ -1,0 +1,53 @@
+
+<div>
+  <h2 >Add new User</h2>
+  <form [formGroup]="form" (ngSubmit)="createUser(form)">
+    <mat-form-field>
+      <input matInput placeholder="Id" formControlName="id">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+    <button mat-raised-button color="primary">Add</button>
+  </form>
+</div>
+<div class="example-header" style="width:100%">
+  <mat-form-field floatPlaceholder="never">
+    <input matInput #filter placeholder="Filter users">
+  </mat-form-field>
+</div>
+
+<mat-table #table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="userId" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="userName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+  </ng-container>
+
+
+  <!-- Progress Column -->
+  <ng-container matColumnDef="progress" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header > Progress </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
+  </ng-container>
+
+  <!-- Color Column -->
+  <ng-container matColumnDef="color">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
+    <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getDataEachRow(row)" ></mat-row>
+</mat-table>
+<mat-paginator #paginator
+  [length]="exampleDatabase.data.length"
+  [pageIndex]="0"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

@@ -1,0 +1,109 @@
+.container{
+    margin: 10px 100px ;
+    border: 1px solid gray;
+    background-color: white;
+    padding: 0 0 20px;
+}
+.example-spacer{
+    flex: 1 1 auto;
+}
+.toolbar-icon{
+    padding-left: 15px;
+}
+.each-section{
+    background-color: #ddd;
+    padding: 20px;
+    margin: 10px;
+}
+.button button{
+    margin: 10px 10px;
+}
+.mat-button-toggle{
+    background-color: coral;
+    color: white;
+}
+.mat-button-toggle-checked{
+    background-color: blue;
+}
+.strong{
+    font-size: 1.25em;
+    font-weight: bolder;
+}
+.chip-list{
+    width:70%;
+}
+.normalIcon mat-icon{
+    font-size: 40px;
+    padding: 0 20px;
+}
+.svgIcon mat-icon{
+    margin: 0 10px;
+}
+svg{
+    font-size: 30px;
+}
+
+.progressbar{
+    height: 60px;
+    
+}
+.list mat-list{
+    width:100%;
+}
+.list mat-list-item{
+    border-bottom: 1px solid gray;
+}
+
+.example-header-image{
+    background-image: url('https://i.ytimg.com/vi/RqHI0kE-cyo/maxresdefault.jpg');
+    background-size: cover;
+}
+.simpleAvatar{
+    background-image: url('https://i.ytimg.com/vi/RqHI0kE-cyo/maxresdefault.jpg');
+    background-size: cover;
+}
+.simpleCard{
+    margin-right: 20px !important;
+}
+
+.sidenav{
+    width: 100%;
+}
+mat-sidenav{
+    width:300px;
+    padding: 20px;
+}
+mat-sidenav-container{
+    height: 200px;
+}
+.example-sidenav-content{
+    padding: 20px;
+}
+.mat-drawer-content{
+    overflow: hidden !important;
+}
+.tables{
+    width:100%;
+}
+
+.dialog{
+    width:300px;
+}
+.tooltip{
+    width:300px;
+}
+
+
+@media screen and (max-width:576px){
+    .container{
+        margin:0;
+    }
+    
+}
+
+@media screen and (max-width:400px){
+    .sidenav{
+        display:none;
+    }
+    
+}
